@@ -1,0 +1,24 @@
+{
+  "name": "festivalmusica",
+  "version": "1.0.0",
+  "description": "aprendiendo SASS y NPM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chabito24/SASSyNPM.git"
+  },
+  "keywords": [
+    "SASS",
+    "NPM",
+    "Gulp"
+  ],
+  "author": "Edward Martínez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chabito24/SASSyNPM/issues"
+  },
+  "homepage": "https://github.com/Chabito24/SASSyNPM#readme"
+}
