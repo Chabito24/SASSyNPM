@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Chabito24/SASSyNPM/issues"
   },
-  "homepage": "https://github.com/Chabito24/SASSyNPM#readme"
+  "homepage": "https://github.com/Chabito24/SASSyNPM#readme",
+  "dependencies": {
+    "sass": "^1.90.0"
+  }
 }
