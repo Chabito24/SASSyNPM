@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "sass:build": "sass --watch src/scss:build/css",
-    "css": "gulp css"
+    "dev": "gulp dev"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-import { src, dest } from 'gulp'
+import { src, dest, watch } from 'gulp'
 import * as dartSass from 'sass'
 
 import gulpSass from 'gulp-sass' //dependencia para usar sass  en el archivo de gulpfile
@@ -13,7 +13,7 @@ export function css(done){
     done()
 }
 
-//todo el codigo anterior hace lo mismo que enrutar el archivo de css , aqui borre la carpeta build y volvi a correr nmp run css
+//todo el codigo anterior hace lo mismo que enrutar el archivo de css , aqui borre la carpeta build y volvi a correr nmp run css y crea nuevamente la carpeta de build/css y sus archivo app.css
 
 
 
@@ -22,3 +22,8 @@ export function css(done){
 
     done()
 }*/
+
+export function dev () {
+    watch('src/scss/app.scss', css)
+
+} //watch con gulp, en el primer import agregamos como parametro watch se usa en la ocnsola npm run dev para ejecutar y Ctrl+c para finalizar
