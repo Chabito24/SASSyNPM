@@ -2,9 +2,11 @@
   "name": "festivalmusica",
   "version": "1.0.0",
   "description": "aprendiendo SASS y NPM",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "sass": "sass src/scss:dist/css"
+    "sass:build": "sass --watch src/scss:build/css",
+    "css": "gulp css"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,9 @@
   "homepage": "https://github.com/Chabito24/SASSyNPM#readme",
   "dependencies": {
     "sass": "^1.90.0"
+  },
+  "devDependencies": {
+    "gulp": "^5.0.1",
+    "gulp-sass": "^6.0.1"
   }
 }
