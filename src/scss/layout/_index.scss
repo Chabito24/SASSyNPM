@@ -8,7 +8,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-
     }
 
     h1 {
@@ -18,7 +17,13 @@
 }
 
 .navegacion-principal {
+    display: flex; //me da acceso al agap
+    gap: 2rem; //separa los elementos
     a {
         color: v.$blanco;
+        font-size: 2.4rem;
+        &:hover { //el ampersant une la a y el hover si no la ponemos la deja como elemento separado y no funcionaria el :hover
+            color: v.$amarillo;
+        }
     }
 }
