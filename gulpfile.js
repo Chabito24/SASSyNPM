@@ -24,6 +24,6 @@ export function css(done) {
 }*/
 
 export function dev() {
-    watch('src/scss/app.scss', css);
+    watch('src/scss/**/*.scss', css); //el doble asterisco busca todas las carpetas que esten dentro de scss y /* busca los archivos que tienen la extension scss
 
 } //watch con gulp, en el primer import agregamos como parametro watch se usa en la ocnsola npm run dev para ejecutar y Ctrl+c para finalizar
