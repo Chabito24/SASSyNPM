@@ -12,6 +12,7 @@
 
  //base ---> es la carpeta que almacena todos los scss
 
- @forward 'base';
+ @forward 'base'; //apuntamos a la carpeta base
+ @forward 'layout'; //apuntamos a la carpeta layout
 
 

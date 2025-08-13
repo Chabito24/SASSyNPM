@@ -1,0 +1,24 @@
+@use 'base/variables' as v;
+
+.header {
+    background-color: v.$verde;
+
+    .contenido-header {
+        padding: 2rem; // asigna pading a la informacio contenida en la etiqueta con contenido-header
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    h1 {
+        color: v.$blanco;
+        margin: 0; // alinea los heading uno a cada lado con el space betwen del .contenido header
+    }//detecta que su elemento padre es el header y asigna la propiedad de css al h1 que pertenece a ese header, ver el contraste vs css como compila en build/css/app.css
+}
+
+.navegacion-principal {
+    a {
+        color: v.$blanco;
+    }
+}
