@@ -394,6 +394,13 @@ body > section {
   margin: 0;
 }
 
+@media (min-width: 768px) {
+  .header {
+    color: white;
+    width: 10px;
+    height: 1px;
+  }
+}
 .navegacion-principal {
   display: flex;
   gap: 2rem;
