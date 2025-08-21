@@ -3,29 +3,36 @@
 
 .header {
     background-color: v.$verde;
-
-    @include m.telefono {
-        color: white;
-        width: 10px;
-        height: 1px;         
-    }
+    min-height: 6.4rem;
 
     .contenido-header {
         padding: 2rem; // asigna pading a la informacio contenida en la etiqueta con contenido-header
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include m.tablet {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
     }
 
     h1 {
         color: v.$blanco;
-        margin: 0; // alinea los heading uno a cada lado con el space betwen del .contenido header
+        text-align: center; // centramos el texto
+        @include m.tablet{
+            text-align: left; // alineamos el texto a la izquierda
+            margin: 0; // alinea los heading uno a cada lado con el space betwen del .contenido header
+        }
     }//detecta que su elemento padre es el header y asigna la propiedad de css al h1 que pertenece a ese header, ver el contraste vs css como compila en build/css/app.css
 }
 
 .navegacion-principal {
     display: flex; //me da acceso al agap
+    flex-direction: column; //los elementos se apilan uno debajo del otro
+    align-items: center;
     gap: 2rem; //separa los elementos
+    @include m.tablet {
+        flex-direction: row; // las pantallas de tablet arriba muestran la navegacion horizontal    
+    }
     a {
         color: v.$blanco;
         font-size: 2.4rem;

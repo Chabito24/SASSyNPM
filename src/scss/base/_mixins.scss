@@ -5,21 +5,18 @@
         @content;
     }
 }
-
 @mixin tablet {
     @media (min-width: v.$tablet) {
         @content;
     }
 }
-
 @mixin desktop {
     @media (min-width: v.$desktop) {
         @content;
     }
 }
-
-@mixin xl {
-    @media (min-width: v.$xl) {
+@mixin xldesktop {
+    @media (min-width: v.$xldesktop) {
         @content;
     }
 }
