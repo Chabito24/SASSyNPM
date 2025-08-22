@@ -19,7 +19,7 @@
         color: v.$blanco;
         text-align: center; // centramos el texto
         @include m.tablet{
-            text-align: left; // alineamos el texto a la izquierda
+            text-align: left; // alineamos el texto a la izquierda 
             margin: 0; // alinea los heading uno a cada lado con el space betwen del .contenido header
         }
     }//detecta que su elemento padre es el header y asigna la propiedad de css al h1 que pertenece a ese header, ver el contraste vs css como compila en build/css/app.css
