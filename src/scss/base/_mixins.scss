@@ -20,3 +20,16 @@
         @content;
     }
 }
+
+@mixin contenedor {
+    width: 95%; //maximo toma un 95%
+    max-width: 120rem; // max de 1200 px
+    margin: 0 auto; //centramos
+
+}
+
+@mixin grid($columnas: 1, $gap: 5rem) {
+    display: grid;
+    grid-template-columns: repeat($columnas, 1fr);
+    gap: 5rem;
+}
