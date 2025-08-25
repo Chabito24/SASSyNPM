@@ -28,8 +28,8 @@
 
 }
 
-@mixin grid($columnas: 1, $gap: 5rem) {
-    display: grid;
-    grid-template-columns: repeat($columnas, 1fr);
-    gap: 5rem;
+@mixin grid($columnas: 1, $fraccion: 1fr, $gap: 5rem) { 
+  display: grid;
+  grid-template-columns: repeat($columnas, $fraccion);
+  gap: $gap;
 }
