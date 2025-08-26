@@ -7,9 +7,9 @@ import gulpSass from 'gulp-sass'; //dependencia para usar sass  en el archivo de
 const sass = gulpSass(dartSass);
 
 export function css(done) {
-    src('src/scss/app.scss') //ubica el archivo
+    src('src/scss/app.scss', {sourcemaps: true}) //ubica el archivo y spucemap nos permite saber en inpector en au archivo y que linea se encuentra ese codigo
         .pipe(sass().on('error', sass.logError)) //aplica sass, // .on....<--- maneja errores de compilación
-        .pipe(dest('build/css')) //.pipe controla el orden en el cual se va a ir ejecutando las funciones
+        .pipe(dest('build/css', {sourcemaps: true})) //.pipe controla el orden en el cual se va a ir ejecutando las funciones
     done();
 }
 
