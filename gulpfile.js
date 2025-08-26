@@ -1,10 +1,19 @@
-import { src, dest, watch } from 'gulp';
+import { src, dest, watch, series } from 'gulp';
 import * as dartSass from 'sass';
 
 import gulpSass from 'gulp-sass'; //dependencia para usar sass  en el archivo de gulpfile
 
 
 const sass = gulpSass(dartSass);
+
+export function js(done){
+
+    src('src/js/app.js') // ubicacion del archivo .js
+        .pipe(dest('build/js')) //lo lleva hace al build similar a lo que hicimos con css
+
+    done()
+}
+
 
 export function css(done) {
     src('src/scss/app.scss', {sourcemaps: true}) //ubica el archivo y spucemap nos permite saber en inpector en au archivo y que linea se encuentra ese codigo
@@ -25,5 +34,8 @@ export function css(done) {
 
 export function dev() {
     watch('src/scss/**/*.scss', css); //el doble asterisco busca todas las carpetas que esten dentro de scss y /* busca los archivos que tienen la extension scss
+    watch('src/js/**/*.js', js);
 
 } //watch con gulp, en el primer import agregamos como parametro watch se usa en la ocnsola npm run dev para ejecutar y Ctrl+c para finalizar
+
+export default series(js, css, dev) //permite que al ejecutar run se ejecuten todas estas tareas.
