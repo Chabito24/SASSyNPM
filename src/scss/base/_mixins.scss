@@ -33,3 +33,10 @@
   grid-template-columns: repeat($columnas, $fraccion);
   gap: $gap;
 }
+
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
