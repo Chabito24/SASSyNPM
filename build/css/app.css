@@ -532,9 +532,13 @@ body > section {
 .calendario li {
   padding: 2.5rem;
   font-weight: 700;
+  transition: transform 0.2s ease-out;
 }
 .calendario li span {
   font-weight: 400;
+}
+.calendario li:hover {
+  transform: scale(1.1);
 }
 
 .bg-amarillo {
@@ -548,5 +552,81 @@ body > section {
   background-color: #4CB8B3;
 }
 .bg-verde li:nth-child(odd) {
-  background-color: rgb(112.516, 198.484, 194.504);
+  background-color: rgb(94.258, 191.242, 186.752);
+}
+
+.contenedor-boletos {
+  background-color: #4CB8B3;
+}
+.contenedor-boletos h3 {
+  color: #FFFFFF;
+}
+.contenedor-boletos .boletos {
+  width: 95%;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .contenedor-boletos .boletos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+  }
+}
+
+.pase {
+  transition: transform 0.4s ease-out;
+}
+.pase:hover {
+  transform: scale(1.1);
+}
+.pase-nombre {
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #FFFFFF;
+}
+.pase-header, .pase-footer {
+  padding: 0.5rem;
+}
+.pase-header p, .pase-footer p {
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0;
+}
+.pase-header {
+  background-color: #F53756;
+}
+.pase-header p {
+  text-transform: uppercase;
+  font-size: 2.2rem;
+  padding: 1rem 0;
+}
+.pase-body {
+  background-color: #FFFFFF;
+}
+.pase-body ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pase-body ul li {
+  padding: 2rem;
+  border-bottom: 1px solid #e1e1e1;
+}
+.pase-footer {
+  background-color: #FFFFFF;
+  padding: 3rem;
+}
+.pase-footer p {
+  font-size: 2.8rem;
+  font-weight: 900;
+  background-color: #752F97;
+  padding: 1rem 0;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+.pase-footer p:hover {
+  background-color: rgb(152.8909090909, 64.6484848485, 195.7515151515);
 }
