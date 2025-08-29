@@ -34,7 +34,14 @@ function mostrarImagen(i) {
     modal.classList.add('modal')
     modal.onclick = cerrarModal //no requiere funcion por que no le estamos pasando un parametro como a mostrarImagen, esto debido a que cuando muestro la imagen el parametro es I ya que tiene que saber cual es la imagen a a cual le estoy dando click pero para cerrar el modal es irrelevante, igual se le puede pasar el function sin asignarle el arguumento de "i" ya que no es necesario
 
-    modal.appendChild(imagen) //generamos a imagen que se esta tomando en la funcion anterior de function mostrarImagen(i)y la agregamos al modal
+    //Botón de cerrar
+    const cerrarModalBtn = document.createElement('BUTTON') //crea elemento etiqueta HTML
+    cerrarModalBtn.textContent = 'X' //contenido
+    cerrarModalBtn.classList.add('btn-cerrar') //crea clase
+    cerrarModalBtn.onclick = cerrarModal //cierra el modal
+
+        modal.appendChild(imagen) //generamos a imagen que se esta tomando en la funcion anterior de function mostrarImagen(i)y la agregamos al modal
+        modal.appendChild(cerrarModalBtn)
 
     //Agregar al HTML
     const body = document.querySelector('body')
@@ -49,6 +56,6 @@ function cerrarModal() {
         modal?.remove() //valida si eiste el modal y en ese caso eliminalo
         const body = document.querySelector('body')
         body.classList.remove('overflow-hidden')
-    },500); //retrsa este codigo 500 mili segudo lo que es lo mismo que medio segundo
+    },500); //retrsa este codigo 500 milisegudos lo que es lo mismo que medio segundo
     }
     

@@ -45,6 +45,23 @@
     }
 }
 
+//boton
+
+.btn-cerrar {
+    width: 4rem; //alto
+    height: 4rem; //ancho
+    border-radius: 50%; //borde redondo
+    background-color: v.$blanco; //fondo blanco
+    border: none; //sin borde
+    color: v.$negro; // color letra 
+    display: grid; //display
+    place-items: center; //centramos
+    font-weight: 700; // grosor fuente
+    cursor: pointer //cursor
+
+}
+
+
 //animación
 @keyframes fadeIn {
     0% {
