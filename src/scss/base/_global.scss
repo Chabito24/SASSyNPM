@@ -16,6 +16,10 @@ body {
     font-style: normal; // estilo normal
     color: v.$negro; // color fuente negro
     font-size: 2rem; //tamaño 
+
+    &.overflow-hidden {
+        overflow: hidden; //inhabilita el scroll fuuera del modal
+    }
 }
 p {
     color: v.$negro; //color letra
