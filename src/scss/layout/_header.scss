@@ -3,7 +3,18 @@
 
 .header {
     background-color: v.$verde;
-    min-height: 6.4rem;
+
+    @include m.tablet {
+        &.fixed {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            box-shadow: .1rem .2rem .3rem #333;
+        }
+    }
+
+    
 
     .contenido-header {
         padding: 2rem; // asigna pading a la informacio contenida en la etiqueta con contenido-header

@@ -1,7 +1,23 @@
 // Escucha el evento que indica que el DOM ya fue cargado y es seguro manipularlo
 document.addEventListener('DOMContentLoaded', function(){
+    navegacionFija()
     crearGaleria() // Al estar listo el DOM, llama a la función que construye la galería
 })
+
+function navegacionFija () {
+    const header = document.querySelector('.header') //selector de clase header
+    const sobreFestival = document.querySelector('.sobre-festival') //selector
+
+    document.addEventListener('scroll', function() {
+        if(sobreFestival.getBoundingClientRect().bottom < 1) {
+            header.classList.add('fixed')
+        }else {
+            header.classList.remove('fixed')
+        }
+    })
+        
+}
+
 
 function crearGaleria() {
     const cantidadImagenes = 16
