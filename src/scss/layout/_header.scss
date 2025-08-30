@@ -47,7 +47,8 @@
     a {
         color: v.$blanco;
         font-size: 2.4rem;
-        &:hover { //el ampersant une la a y el hover si no la ponemos la deja como elemento separado y no funcionaria el :hover
+        &:hover,
+        &.active { //el ampersant une la a y el hover si no la ponemos la deja como elemento separado y no funcionaria el :hover
             color: v.$amarillo;
         }
     }
