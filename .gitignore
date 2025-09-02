@@ -1,0 +1,13 @@
+# Node.js
+node_modules/
+
+# Sass cache
+.sass-cache/
+**/.sass-cache/
+
+# Mapa de fuentes CSS
+*.css.map
+
+# Archivos de entorno y macOS
+.env
+.DS_Store
