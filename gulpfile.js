@@ -1,3 +1,6 @@
+import path from 'path'
+import fs from 'fs'
+
 import { src, dest, watch, series } from 'gulp';
 import * as dartSass from 'sass';
 
@@ -7,6 +10,7 @@ import gulpSass from 'gulp-sass'; //dependencia para usar sass  en el archivo de
 const sass = gulpSass(dartSass);
 
 import terser from 'gulp-terser' //despues de instalar en el bash npm i -save-dev gul-terser importamos terser
+import sharp from 'sharp' // posterior a instalar sharp video 204 con "npm i --save-dev sharp" desde el bash o termminal
 
 export function js(done){
 
@@ -30,6 +34,45 @@ export function css(done) {
 //todo el codigo anterior hace lo mismo que enrutar el archivo de css , aqui borre la carpeta build y volvi a correr nmp run css y crea nuevamente la carpeta de build/css y sus archivo app.css
 
 
+// IMPORTS NECESARIOS
+
+// Exporta una función asíncrona llamada 'crop' que recibe un callback 'done' (útil si la integras con Gulp) ESTO ES CODIGO DE NODE, no hay una instancia propuia de gulp para esto
+export async function crop(done) {
+    const inputFolder = 'src/img/gallery/full'   // Carpeta de entrada donde están las imágenes originales
+    const outputFolder = 'src/img/gallery/thumb';// Carpeta de salida donde se guardarán las miniaturas
+    const width = 250;// Ancho objetivo de las miniaturas (en píxeles)
+    const height = 180;// Alto objetivo de las miniaturas (en píxeles)
+
+    // Si la carpeta de salida no existe, créala (con 'recursive' por si faltan directorios intermedios)
+    if (!fs.existsSync(outputFolder)) {
+        fs.mkdirSync(outputFolder, { recursive: true })
+    }
+
+    // Lee todos los nombres de archivo en la carpeta de entrada y filtra solo los .jpg (insensible a mayúsculas)
+    const images = fs.readdirSync(inputFolder).filter(file => {
+        return /\.(jpg)$/i.test(path.extname(file)); // Verifica extensión .jpg
+    });
+
+    try {// Recorre la lista de imágenes a procesar
+        images.forEach(file => {
+            const inputFile = path.join(inputFolder, file) // Ruta completa del archivo de entrada
+            const outputFile = path.join(outputFolder, file)// Ruta completa del archivo de salida
+
+            // Crea un pipeline con sharp para la imagen de entrada
+            sharp(inputFile) 
+                .resize(width, height, {// Redimensiona a 250x180
+                    position: 'centre' // Alineación del recorte/posicionamiento ('centre' es válido en sharp)
+                })
+                .toFile(outputFile)// Escribe la imagen resultante en la ruta de salida
+        });
+
+        done()// Llama al callback para indicar que el proceso terminó (estilo Gulp)
+    } catch (error) {
+        console.log(error) // Si ocurre un error en el try, lo muestra en consola
+    }
+}
+
+
 
 /*export function hola(done) {
     console.log('Hola desde GULP')
@@ -43,4 +86,4 @@ export function dev() {
 
 } //watch con gulp, en el primer import agregamos como parametro watch se usa en la ocnsola npm run dev para ejecutar y Ctrl+c para finalizar
 
-export default series(js, css, dev) //permite que al ejecutar run se ejecuten todas estas tareas.
+export default series(crop, js, css, dev) //permite que al ejecutar run se ejecuten todas estas tareas.
