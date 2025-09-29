@@ -1,6 +1,8 @@
 import path from 'path'
 import fs from 'fs'
 
+import { glob } from 'glob'
+
 import { src, dest, watch, series } from 'gulp';
 import * as dartSass from 'sass';
 
@@ -72,6 +74,55 @@ export async function crop(done) {
     }
 }
 
+// Define una tarea exportada (asíncrona) llamada 'imagenes' que Gulp puede ejecutar
+export async function imagenes(done) {
+    // Define el directorio donde están las imágenes fuente (originales)
+    const srcDir = './src/img';
+    // Define el directorio donde se guardarán las imágenes procesadas
+    const buildDir = './build/img';
+    // Busca recursivamente todas las imágenes .jpg y .png dentro de 'src/img'
+    const images =  await glob('./src/img/**/*{jpg,png}')
+
+    // Itera sobre cada archivo de imagen encontrado
+    images.forEach(file => {
+        // Calcula la ruta relativa desde el directorio fuente al archivo actual
+        const relativePath = path.relative(srcDir, path.dirname(file));
+        // Une la ruta relativa con el directorio de salida para mantener la estructura de carpetas
+        const outputSubDir = path.join(buildDir, relativePath);
+        // Llama a la función que procesa individualmente cada imagen
+        procesarImagenes(file, outputSubDir);
+    });
+
+    // Llama a 'done()' para indicar que la tarea ha finalizado (necesario en Gulp)
+    done();
+}
+
+// Función que convierte una imagen a .jpeg y .webp, y la guarda en el directorio de salida
+function procesarImagenes(file, outputSubDir) {
+    // Si el subdirectorio de salida no existe, lo crea (incluyendo carpetas intermedias)
+    if (!fs.existsSync(outputSubDir)) {
+        fs.mkdirSync(outputSubDir, { recursive: true })
+    }
+
+    // Obtiene el nombre del archivo sin extensión
+    const baseName = path.basename(file, path.extname(file))
+    // Obtiene la extensión del archivo original (.jpg o .png)
+    const extName = path.extname(file)
+    // Construye la ruta de salida para guardar la versión en JPEG/PNG con calidad optimizada
+    const outputFile = path.join(outputSubDir, `${baseName}${extName}`)
+    // Construye la ruta de salida para guardar la versión en formato WebP
+    const outputFileWebp = path.join(outputSubDir, `${baseName}.webp`)
+
+    // Define opciones de compresión (calidad al 80%) para ambas conversiones
+    const options = { quality: 80 }
+
+    // Convierte y guarda la imagen en su formato original (optimizada con calidad 80)
+    sharp(file).jpeg(options).toFile(outputFile)
+    // Convierte y guarda una copia de la imagen en formato WebP con calidad 80
+    sharp(file).webp(options).toFile(outputFileWebp)
+}
+
+
 
 
 /*export function hola(done) {
@@ -81,9 +132,10 @@ export async function crop(done) {
 }*/
 
 export function dev() {
-    watch('src/scss/**/*.scss', css); //el doble asterisco busca todas las carpetas que esten dentro de scss y /* busca los archivos que tienen la extension scss
-    watch('src/js/**/*.js', js);
+    watch('src/scss/**/*.scss', css) //el doble asterisco busca todas las carpetas que esten dentro de scss y /* busca los archivos que tienen la extension scss
+    watch('src/js/**/*.js', js)
+    watch('src/js/**/*.{png,jpg}', imagenes)
 
 } //watch con gulp, en el primer import agregamos como parametro watch se usa en la ocnsola npm run dev para ejecutar y Ctrl+c para finalizar
 
-export default series(crop, js, css, dev) //permite que al ejecutar run se ejecuten todas estas tareas.
+export default series(crop, js, css, imagenes, dev) //permite que al ejecutar run se ejecuten todas estas tareas.

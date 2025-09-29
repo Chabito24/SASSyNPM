@@ -31,7 +31,7 @@ function crearGaleria() { // Define la función que genera dinámicamente las im
         imagen.loading = 'lazy'
         imagen.width = "300"
         imagen.height = "200"
-        imagen.src = `src/img/gallery/full/${i}.jpg` // Define la ruta de la imagen usando plantillas: 1.jpg, 2.jpg, ... 16.jpg
+        imagen.src = `src/img/gallery/thumb/${i}.jpg` // Define la ruta de la imagen usando plantillas: 1.jpg, 2.jpg, ... 16.jpg
         imagen.alt = 'Imagen Galeria' // Texto alternativo para accesibilidad y cuando la imagen no se puede mostrar
 
 
