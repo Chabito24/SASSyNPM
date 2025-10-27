@@ -26,13 +26,18 @@ function crearGaleria() { // Define la función que genera dinámicamente las im
     const galeria = document.querySelector('.galeria-imagenes') // Selecciona el contenedor donde se insertarán las imágenes (clase .galeria-imagenes)
 
     // Bucle para crear y agregar varias imágenes a la galería
-    for(let i = 1; i <= cantidadImagenes; i++) { // Inicializa i=1; ⚠️ OJO: la condición "1 <= 16" es SIEMPRE verdadera (bucle infinito). Debería ser "i <= 16".
-        const imagen = document.createElement('IMG') // Crea un elemento <img> (las etiquetas HTML no son sensibles a mayúsculas/minúsculas)
-        imagen.loading = 'lazy'
+    for(let i = 1; i <= cantidadImagenes; i++) { // Inicializa i=1; OJO: la condición "1 <= 16" es SIEMPRE verdadera (bucle infinito). Debería ser "i <= 16".
+        const imagen = document.createElement('PICTURE') // Crea un elemento <img> (las etiquetas HTML no son sensibles a mayúsculas/minúsculas)
+        imagen.innerHTML = `
+            <source srcset="build/img/gallery/thumb/${i}.avif" type="image/avif">
+            <source srcset="build/img/gallery/thumb/${i}.webp" type="image/webp">
+            <img loading="lazy" width="200" height="300" src="build/img/gallery/thumb/${i}.jpg" alt="imagen galeria">
+`;
+        /***imagen.loading = 'lazy'
         imagen.width = "300"
         imagen.height = "200"
         imagen.src = `src/img/gallery/thumb/${i}.jpg` // Define la ruta de la imagen usando plantillas: 1.jpg, 2.jpg, ... 16.jpg
-        imagen.alt = 'Imagen Galeria' // Texto alternativo para accesibilidad y cuando la imagen no se puede mostrar
+        imagen.alt = 'Imagen Galeria' // Texto alternativo para accesibilidad y cuando la imagen no se puede mostrar***/
 
 
         //Event Handler - es el proceso de detectar y responder a una interaccion del usuario en este caso a un clik
@@ -47,9 +52,13 @@ function crearGaleria() { // Define la función que genera dinámicamente las im
 
 function mostrarImagen(i) { // Función que crea y muestra el modal con la imagen ampliada
 
-    const imagen = document.createElement('IMG') // Crea una etiqueta <img> para el modal
+    /***const imagen = document.createElement('PICTURE') // Crea una etiqueta <img> para el modal
     imagen.src = `src/img/gallery/full/${i}.jpg` // Apunta a la misma imagen pero para mostrarla en grande
-    imagen.alt = 'Imagen Galeria' // Texto alternativo para la imagen
+    imagen.alt = 'Imagen Galeria' // Texto alternativo para la imagen***/
+            imagen.innerHTML = `
+            <source srcset="build/img/gallery/full/${i}.avif" type="image/avif">
+            <source srcset="build/img/gallery/full/${i}.webp" type="image/webp">
+            <img loading="lazy" width="200" height="300" src="build/img/gallery/full/${i}.jpg" alt="imagen galeria">
 
     //Generar Modal
     const modal = document.createElement('DIV') // Crea el contenedor del modal

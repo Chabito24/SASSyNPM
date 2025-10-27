@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 
-import { glob } from 'glob'
+import { glob } from 'glob' //imporamos la dependiencia de glob
 
 import { src, dest, watch, series } from 'gulp';
 import * as dartSass from 'sass';
@@ -112,6 +112,8 @@ function procesarImagenes(file, outputSubDir) {
     const outputFile = path.join(outputSubDir, `${baseName}${extName}`)
     // Construye la ruta de salida para guardar la versión en formato WebP
     const outputFileWebp = path.join(outputSubDir, `${baseName}.webp`)
+    // Construye la ruta de salida para guardar la versión en formato avif
+    const outputFileAvif = path.join(outputSubDir, `${baseName}.avif`)
 
     // Define opciones de compresión (calidad al 80%) para ambas conversiones
     const options = { quality: 80 }
@@ -120,6 +122,8 @@ function procesarImagenes(file, outputSubDir) {
     sharp(file).jpeg(options).toFile(outputFile)
     // Convierte y guarda una copia de la imagen en formato WebP con calidad 80
     sharp(file).webp(options).toFile(outputFileWebp)
+    // Convierte y guarda una copia de la imagen en formato Avif con calidad 80
+    sharp(file).avif().toFile(outputFileAvif)
 }
 
 
@@ -134,7 +138,7 @@ function procesarImagenes(file, outputSubDir) {
 export function dev() {
     watch('src/scss/**/*.scss', css) //el doble asterisco busca todas las carpetas que esten dentro de scss y /* busca los archivos que tienen la extension scss
     watch('src/js/**/*.js', js)
-    watch('src/js/**/*.{png,jpg}', imagenes)
+    watch('src/img/**/*.{png,jpg}', imagenes)
 
 } //watch con gulp, en el primer import agregamos como parametro watch se usa en la ocnsola npm run dev para ejecutar y Ctrl+c para finalizar
 

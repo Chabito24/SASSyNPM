@@ -44,7 +44,12 @@
 
         <section class="sobre-festival">
             <div class="imagen">
-                <img width="300" height="200" loading="lazy" src="src/imagen_dj.jpg" alt="Festival de Música">
+                <picture> <!--agrupa avif webp y jpg-->
+                    <source srcset="build/img/gallery/full/imagen_dj.avif" type="image/avif"/>
+                    <source srcset="build/img/gallery/full/imagen_dj.webp" type="image/webp">
+                    <img width="300" height="200" loading="lazy" src="build/img/gallery/full/imagen_dj.jpg" alt="Festival de Música">
+                </picture>
+                
             </div>
 
             <div class="contenido-festival">
